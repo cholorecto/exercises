@@ -52,6 +52,7 @@
         this.storage = [];
       }
 
+      // just my own idea and feel free to correct me
       Queue.prototype.enqueue = function(val) {
         var newItem = [];
         newItem.push(val);
@@ -59,7 +60,6 @@
         return this.storage.length
       }
 
-      // just my own idea and feel free to correct me
       Queue.prototype.dequeue = function() {
         const last = this.storage[this.storage.length - 1]
         this.storage = this.storage.filter(item => item !== last);
@@ -77,6 +77,23 @@
       console.log(myQueuing.storage, 'myQueuing');
       console.log(myQueuing.dequeue(), 'dequeue')
       console.log(myQueuing.storage, 'myQueuing');
+
+
+      // Recursion
+      // I have used this when I need to search on tree data
+      var count = 0;
+
+      var recur = function() {
+        count++;
+        if(count === 5){
+          return;
+        }
+
+        document.write(`<br> ${count}`)
+        recur();
+      }
+
+      recur();
     </script>
   </body>
 </html>
