@@ -1,0 +1,82 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+
+      // Basics
+      function Gym(name) {
+        this.name = name
+      }
+
+      var myGym = new Gym('cholo fit')
+
+      Gym.prototype.getLength = function() {
+        document.write(`Length: ${this.name.length}`)
+      }
+
+      document.write(`Gym name: ${myGym.name} <br>`);
+      myGym.getLength();
+
+
+      // Stacks
+      var Stack = function() {
+        this.storage = "";
+      }
+
+      Stack.prototype.push = function(val) {
+        this.storage = this.storage.concat('***', val);
+      }
+
+      Stack.prototype.pop = function() {
+        let storageArray = this.storage.split('***');
+        const last = storageArray[storageArray.length - 1];
+        this.storage = this.storage.replace(`***${last}`, '');
+        return last;
+      }
+
+      Stack.prototype.size = function() {
+        return this.storage.length;
+      }
+
+      var myWeeklyMenu = new Stack();
+      myWeeklyMenu.push("Bingka");
+      myWeeklyMenu.push("Bulad");
+      myWeeklyMenu.push("Spag");
+      console.log(myWeeklyMenu.pop());
+      console.log(myWeeklyMenu.storage);
+      console.log(myWeeklyMenu.size());
+
+
+      // Queue
+      var Queue = function() {
+        this.storage = [];
+      }
+
+      Queue.prototype.enqueue = function(val) {
+        var newItem = [];
+        newItem.push(val);
+        this.storage = newItem.concat(this.storage)
+        return this.storage.length
+      }
+
+      // just my own idea and feel free to correct me
+      Queue.prototype.dequeue = function() {
+        const last = this.storage[this.storage.length - 1]
+        this.storage = this.storage.filter(item => item !== last);
+        return last;
+      }
+
+      Queue.prototype.size = function() {
+        return this.storage.length;
+      }
+
+      var myQueuing = new Queue();
+      myQueuing.enqueue('cholo')
+      myQueuing.enqueue('zoilo')
+      myQueuing.enqueue('recto')
+      console.log(myQueuing.storage, 'myQueuing');
+      console.log(myQueuing.dequeue(), 'dequeue')
+      console.log(myQueuing.storage, 'myQueuing');
+    </script>
+  </body>
+</html>
