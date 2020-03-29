@@ -3,6 +3,76 @@
   <body>
     <script>
 
+      var sampleData = [
+        {
+          id: 1,
+          name: 'cholo',
+          children: [
+            {
+              id: 12211,
+              name: 'diko',
+              children: [
+                {
+                  id: 22134,
+                  name: 'jerry',
+                  children: []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'zoilo',
+          children: [
+            {
+              id: 22132,
+              name: 'ian',
+              children: []
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: 'recto',
+          children: [
+            {
+              id: 4432,
+              name: 'lester',
+              children: []
+            }
+          ]
+        },
+        {
+          id: 4,
+          name: 'pocholo',
+          children: [
+            {
+              id: 22132,
+              name: 'chuck',
+              children: [
+                {
+                  id: 44443,
+                  name: 'micco',
+                  children: []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: 5,
+          name: 'luis',
+          children: [
+            {
+              id: 7667,
+              name: 'maki',
+              children: []
+            }
+          ]
+        }
+      ];
+
       // Basics
       function Gym(name) {
         this.name = name
@@ -81,19 +151,24 @@
 
       // Recursion
       // I have used this when I need to search on tree data
-      var count = 0;
-
-      var recur = function() {
-        count++;
-        if(count === 5){
-          return;
+      const findName = (searchString, data, accumulator) => {
+        if(data.name.toLowerCase().includes(searchString.toLowerCase())){
+          accumulator = accumulator.concat(data);
+        } else {
+          accumulator = accumulator.concat(
+            data.children.reduce((accumulatorDeep, data) => {
+              return findName(searchString, data, accumulatorDeep)
+            }, [])
+          )
         }
+        return accumulator;
+      };
 
-        document.write(`<br> ${count}`)
-        recur();
-      }
+      var searchedData = sampleData.reduce((accumulator, data) => {
+        return findName('jerry', data, accumulator);
+      }, []);
 
-      recur();
+      console.log(searchedData, 'searchedData');
     </script>
   </body>
 </html>
