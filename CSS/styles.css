@@ -1,0 +1,34 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    margin: 0 auto;
+    width: 40em;
+    text-align: center;
+  }
+  .red {
+    grid-column: span 3;
+  }
+  .yellow {
+    grid-column: span 3;
+    margin: 0 auto;
+    width: 5em;
+  }
+  .green {
+    grid-column: span 3;
+  } 
+
+  div > div {
+    font-size: 5rem;
+    color: white;
+  }
+  .red {
+    background-color: red;
+  }
+  .yellow {
+    background-color: yellow;
+  }
+  .green {
+    background-color: green;
+  }
+    
